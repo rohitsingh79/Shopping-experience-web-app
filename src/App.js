@@ -1,4 +1,5 @@
 import "./styles.css";
+import {useEffect} from "react";
 import { Grid } from "@material-ui/core";
 import {
   Card,
@@ -9,10 +10,24 @@ import {
   IconButton
 } from "@material-ui/core";
 import { AddShoppingCart } from "@material-ui/icons";
+import axios from 'axios';
 
 export default function App() {
   const Product1 = (props) => {
     const { Product } = props;
+    const fetchProducts = async () =>{
+      const response = await 
+      axios.get('https://fakestoreapi.com/products')
+      .catch((error)=>{
+          console.log(error);
+      })
+      console.log(response);
+    }
+
+    useEffect (()=>{
+      fetchProducts();
+    },[])
+
 
     return (
       <Card>
