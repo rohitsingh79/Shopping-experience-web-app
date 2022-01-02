@@ -1,10 +1,10 @@
 import React from "react";
 import { useEffect } from "react";
-import { useParam } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 function ProductDescription() {
-  const { productId } = useParam();
+  const { productId } = useParams();
   const Dispatch = useDispatch();
   const selector = useSelector((state) => state.product);
 
@@ -13,7 +13,9 @@ function ProductDescription() {
       `https://fakestoreapi.com/products/${productId}`
     ); // string literal
     const singleProduct = await response.json();
-    Dispatch({ type: "FETCH_SINGLE_PRODUCT", payload: singleProduct });
+    console.log("single product");
+    console.log(singleProduct);
+    // Dispatch({ type: "FETCH_SINGLE_PRODUCT", payload: singleProduct });
   };
 
   useEffect(() => {
