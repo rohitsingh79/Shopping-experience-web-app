@@ -12,9 +12,8 @@ export default function App() {
   return (
     <div>
       <Header></Header>
-      <ProductList></ProductList>
       <Routes>
-        <Route exact path="/" element={<Home />} />
+        <Route exact path="/" element={<ProductList />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/Register" element={<Register />} />
         <Route path="/product/:productId" element={<ProductDescription />} />

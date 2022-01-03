@@ -24,7 +24,7 @@ function ProductDescription() {
       fetchProductDetailById();
     }
   }, []);
-  return <React.Fragment>hello</React.Fragment>;
+  return <React.Fragment>Welcome to Product Description</React.Fragment>;
 }
 
 export default ProductDescription;
