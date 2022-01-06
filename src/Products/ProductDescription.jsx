@@ -1,30 +1,28 @@
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 function ProductDescription() {
   const { productId } = useParams();
   const Dispatch = useDispatch();
-  const selector = useSelector((state) => state.product);
+  const products = useSelector((state) => state.ProductDescription.products);
 
   const fetchProductDetailById = async () => {
     const response = await fetch(
       `https://fakestoreapi.com/products/${productId}`
     ); // string literal
-    const singleProduct = await response.json();
-    console.log("single product");
-    console.log(singleProduct);
-    // Dispatch({ type: "FETCH_SINGLE_PRODUCT", payload: singleProduct });
+    const data = await response.json();
+    Dispatch({ type: "FETCH_SINGLE_PRODUCT", payload: data });
   };
 
   useEffect(() => {
-    console.log("product description page");
     if (productId && productId !== "") {
       fetchProductDetailById();
     }
+    return () => Dispatch({ type: "REMOVE_PRODUCT" });
   }, []);
-  return <React.Fragment>Welcome to Product Description</React.Fragment>;
+  console.log("products", products);
+  return <React.Fragment>{JSON.stringify(products)}</React.Fragment>;
 }
 
 export default ProductDescription;

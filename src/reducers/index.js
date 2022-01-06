@@ -4,7 +4,9 @@ import {
   createSignUpReducer,
   endLoadingReducer,
   signInReducer,
-  errorStateReducer
+  errorStateReducer,
+  fetchAllProductReducer,
+  fetchProductReducer
 } from "./reducer";
 
 const reducer = combineReducers({
@@ -12,7 +14,9 @@ const reducer = combineReducers({
   create: createSignUpReducer,
   end: endLoadingReducer,
   signIn: signInReducer,
-  error: errorStateReducer
+  error: errorStateReducer,
+  ProductList: fetchAllProductReducer,
+  ProductDescription: fetchProductReducer
 });
 
 export default reducer;

@@ -1,45 +1,39 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-function ProductList() {
-  const dispatch = useDispatch();
-  const selector = useSelector((state) => state);
-  let productData = [];
-  const [state, setState] = useState();
+export default function ProductList() {
+  const [state, setState] = useState([]);
 
-  // fetching the product data
+  const allProducts = useSelector((state) => state.ProductList.allProducts);
+  const dispatch = useDispatch();
+
   const fetchData = async () => {
     const response = await fetch("https://fakestoreapi.com/products/");
     const data = await response.json();
-    setState(data);
-    // dispatch({ type: "FETCH_DATA", payload: data });
+    console.log("data is", data);
+    dispatch({ type: "FETCH_ALL_PRODUCTS", payload: data });
   };
 
-  // if (selector.products) {
-  //   productData = selector.products;
-  // }
+  console.log("all products");
+  console.log(allProducts);
 
   useEffect(() => {
     fetchData();
-    console.log("inside useEffect of ProductList");
   }, []);
 
-  const renderProduct = state.map((item) => {
+  const renderProduct = allProducts.map((item) => {
     return (
-      // <Link to={`/product/${item.id}`}>
-      <li>{item.id}</li>
-      // </Link>
+      <Link to={`/product/${item.id}`}>
+        <li>{item.id}</li>
+      </Link>
     );
   });
 
   return (
     <React.Fragment>
-      inside product list
-      {/* <ul>{renderProduct}</ul> */}
+      <ul>{renderProduct}</ul>
     </React.Fragment>
   );
 }
-
-export default ProductList;
