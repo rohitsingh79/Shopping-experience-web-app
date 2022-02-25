@@ -16,9 +16,6 @@ export default function ProductList() {
     dispatch({ type: "FETCH_ALL_PRODUCTS", payload: data });
   };
 
-  console.log("all products");
-  console.log(allProducts);
-
   useEffect(() => {
     fetchData();
   }, []);
