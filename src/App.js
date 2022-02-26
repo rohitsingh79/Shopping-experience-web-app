@@ -8,7 +8,6 @@ import ProductDescription from "./Products/ProductDescription";
 export default function App() {
   return (
     <div>
-      {/* <Header></Header> */}
       <Routes>
         <Route exact path="/" element={<ProductList />} />
         <Route path="/Login" element={<Login />} />
@@ -18,4 +17,3 @@ export default function App() {
     </div>
   );
 }
-  
